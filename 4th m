@@ -1,0 +1,29 @@
+clear
+N = 10^6; % number of bits
+rng(100); % initialize random generator
+% Transmitter
+ip = rand(1,N) > 0.5; % random bits
+s = 2*ip - 1; % BPSK modulation
+% AWGN noise
+n = 1/sqrt(2)*(randn(1,N) + 1i*randn(1,N));
+Eb_N0_dB = -3:10;
+for ii = 1:length(Eb_N0_dB)
+    % Add noise
+    y = s + 10^(-Eb_N0_dB(ii)/20)*n;
+    % Receiver
+    ipHat = real(y) > 0;
+    % Errors
+    nErr(ii) = sum(ip ~= ipHat);
+end
+simBer = nErr / N;
+% Theoretical BER
+theoryBer = 0.5 * erfc(sqrt(10.^(Eb_N0_dB/10)));
+% Plot
+figure
+semilogy(Eb_N0_dB, theoryBer, 'b.-');
+hold on
+semilogy(Eb_N0_dB, simBer, 'mx-');
+grid on
+axis([-3 10 1e-5 0.5])
+legend('theory', 'simulation');
+xlabel('Eb/No (dB)');

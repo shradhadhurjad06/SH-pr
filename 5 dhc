@@ -1,0 +1,33 @@
+Router>en
+Router#conf t
+Router(config)#int gig0/0/0
+Router(config-if)#ip address 200.200.200.200 255.255.255.0
+Router(config-if)#no shutdown
+Router(config-if)#do write memory
+Router(config-if)#ip dhcp pool net1
+Router(dhcp-config)#network 200.200.200.200 255.255.255.0
+Router(dhcp-config)#default-router 200.200.200.200
+Router(dhcp-config)#exit
+
+
+
+
+Router>
+Router>en
+Router#conf t
+Router(config)#int gig0/0/0
+Router(config-if)#ip address 200.200.200.200 255.255.255.0
+Router(config-if)#no shutdown
+
+Router(config-if)#
+%LINK-5-CHANGED: Interface GigabitEthernet0/0/0, changed state to up
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0/0, changed state to up
+
+Router(config-if)#do write memory
+Building configuration...
+[OK]
+Router(config-if)#ip dhcp pool net1
+Router(dhcp-config)#network 200.200.200.200 255.255.255.0
+Router(dhcp-config)#default-router 200.200.200.200
+Router(dhcp-config)#exit
+Router(config)#

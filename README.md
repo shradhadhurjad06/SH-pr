@@ -25,3 +25,15 @@ print("Inner Product",inner_product)
 res1=sum(inner_product)
 data=res1/len(inner_product)
 print("Data bit that was sent",data)
+
+
+
+Enter the data bits :
+Enter D1 :1111
+Enter D2 :0110
+Enter D3 :1000
+Enter D4 :0011
+Resultant Channel [2232 1990  210   12]
+Enter the station to listen for C1=1 ,C2=2, C3=3 C4=4 : 4
+Inner Product [ 2232 -1990  -210    12]
+Data bit that was sent 11.0
